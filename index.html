@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="router.js"></script>
+</head>
+<body>
+	<button onclick="handleClick()">测试按钮</button>
+	<button onclick="handleClick2()">测试按钮2</button>
+	<script>
+		var router = new Router;
+		router.use('/test/bg', (path, param) => {
+			console.log(`go to page at ${path}`);
+			console.log('参数', param);
+
+			document.body.style.background = param.color;
+		});
+
+		router.use('/test/bg2', (path, param) => {
+			console.log(`go to page at ${path}`);
+			console.log('参数', param);
+			document.body.style.background = param.color;
+		});
+
+		function handleClick() {
+			router.goto('/test/bg', { color: '#ccc' });
+		}
+
+		function handleClick2() {
+			router.goto('/test/bg2', { color: '#000' });
+		}
+	</script>
+</body>
+</html>
